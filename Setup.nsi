@@ -2,7 +2,7 @@
 
 ; HM NIS Edit Wizard helper defines
 !define PRODUCT_NAME "ExpressPython"
-!define PRODUCT_VERSION "1.0"
+!define PRODUCT_VERSION "0.6"
 !define PRODUCT_PUBLISHER "Bhathiya Perera"
 !define PRODUCT_WEB_SITE "http://www.simpll.info"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\launch.exe"
