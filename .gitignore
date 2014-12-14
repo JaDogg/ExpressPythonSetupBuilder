@@ -10,9 +10,10 @@ cmdStub/Bak/
 ## Output/Extracted Files
 #######################################
 
-ExpressPython/*
+ExpressPythonBin/*
 compilers/*
 output/*
+expressPythonRelease/*
 
 #######################################
 ## Python

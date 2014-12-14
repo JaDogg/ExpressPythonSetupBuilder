@@ -11,17 +11,18 @@ SET BUILD_PATH=%~dp0
 ECHO Build Path is: %BUILD_PATH% 
 CD %BUILD_PATH%
 SET Z_PATH=%BUILD_PATH%7z\
-SET WORKAT=%BUILD_PATH%ExpressPython\
+SET WORKAT=%BUILD_PATH%ExpressPythonBin\
 SET PACKSAT=%BUILD_PATH%packs\
 SET OUTPUTAT=%BUILD_PATH%output\
 SET EXPRESS_7Z_OUT=ExpressPython.7z
 SET EXPRESS_EXE_OUT=ExpressPythonSetup.exe
-MKDIR %BUILD_PATH%ExpressPython > NUL 2>&1
+MKDIR %BUILD_PATH%ExpressPythonBin > NUL 2>&1
 MKDIR %BUILD_PATH%output > NUL 2>&1
+CALL compile.cmd
 REM
 REM
 REM Full path to compiled Express Python, Modify this accordingly
-SET EXPRESS=D:\PPRJ\QT\build-PyRun-Desktop_Qt_5_3_2_MinGW_32bit_static-Release\release\expressPython.exe
+SET EXPRESS=%BUILD_PATH%expressPythonRelease\release\expressPython.exe
 SET PATH=%PATH%;%Z_PATH%
 REM
 REM Extract compilers if we don't have them
@@ -40,12 +41,12 @@ ECHO Building cmdStub
 CD %BUILD_PATH%cmdStub
 fbc -s gui "cmdStub.bas" "cmdStub.rc"
 CD %BUILD_PATH%
-ECHO Creating expressPython launcher
-COPY /B /Y %BUILD_PATH%cmdStub\cmdStub.exe + %PACKSAT%OPTIONS + %PACKSAT%porta_launch.cmd %WORKAT%launch.exe > NUL 2>&1
 REM
 REM Copy expressPython.exe
 REM
 COPY /Y %EXPRESS% %WORKAT% > NUL 2>&1
+ECHO Creating expressPython launcher
+COPY /B /Y %BUILD_PATH%cmdStub\cmdStub.exe + %PACKSAT%OPTIONS + %PACKSAT%porta_launch.cmd %WORKAT%launch.exe > NUL 2>&1
 REM
 REM Copy Snippets
 REM
@@ -57,7 +58,7 @@ ECHO Extracting Python...
 7z x -y -o%WORKAT% %PACKSAT%Python34.7z
 ECHO Extracting Completed
 ECHO Creating %EXPRESS_7Z_OUT% ...
-7z a -y ExpressPython.7z ExpressPython\ -mx9
+7z a -y ExpressPython.7z ExpressPythonBin\ -mx9
 CLS
 ECHO Success
 REM
@@ -75,4 +76,3 @@ ECHO Success
 MOVE /Y %EXPRESS_EXE_OUT% %OUTPUTAT% > NUL 2>&1
 DEL /F /S /Q %WORKAT%*
 START %OUTPUTAT%
-

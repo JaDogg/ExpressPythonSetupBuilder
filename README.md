@@ -12,3 +12,5 @@ Setup Builder for Express Python
 *packs* - Binary Packages, Compilers
 
 *licenses* - License Files
+
+*expressPython* - git submodule pointing to Express Python

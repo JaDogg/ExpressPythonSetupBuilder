@@ -52,7 +52,7 @@ ShowUnInstDetails show
 Section "MainSection" SEC01
   SetOutPath "$INSTDIR"
   SetOverwrite try
-  File /r "ExpressPython\*"
+  File /r "ExpressPythonBin\*"
   CreateDirectory "$SMPROGRAMS\ExpressPython"
   CreateShortCut "$SMPROGRAMS\ExpressPython\ExpressPython.lnk" "$INSTDIR\launch.exe"
 SectionEnd
