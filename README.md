@@ -5,6 +5,10 @@ Setup Builder for Express Python
 
 ##Folder Structure
 
-cmdStub - modified copy of cmdStub project with new resources
+*cmdStub* - modified copy of cmdStub project with new resources
 
-7z - 7zip binary
+*7z* - 7zip binary
+
+*packs* - Binary Packages, Compilers
+
+*licenses* - License Files
