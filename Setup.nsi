@@ -96,13 +96,12 @@ Function un.onInit
 FunctionEnd
 
 Section Uninstall
+  ExecWait '"$SYSDIR\msiExec" /x $INSTDIR\python-3.4.2.msi /qr'
   Delete "$SMPROGRAMS\ExpressPython\Uninstall.lnk"
   Delete "$SMPROGRAMS\ExpressPython\Website.lnk"
   Delete "$SMPROGRAMS\ExpressPython\ExpressPython.lnk"
   RMDir "$SMPROGRAMS\ExpressPython"
-
   RMDir /r "$INSTDIR" ;remove all items in this dir
-
   DeleteRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}"
   DeleteRegKey HKLM "${PRODUCT_DIR_REGKEY}"
   SetAutoClose true

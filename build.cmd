@@ -32,17 +32,16 @@ MKDIR %BUILD_PATH%compilers > NUL 2>&1
 7z x -y -o%BUILD_PATH%compilers %PACKSAT%NSIS.7z
 :COMPILERS_AVAILABLE
 SET PATH=%PATH%;%BUILD_PATH%compilers\FreeBASIC-1.00.0-win32\;%BUILD_PATH%compilers\NSIS\
+DEL /F /S /Q %WORKAT%*
 REM
 REM Create Launcher
 REM
 ECHO Building cmdStub
 CD %BUILD_PATH%cmdStub
 fbc -s gui "cmdStub.bas" "cmdStub.rc"
-MOVE /Y cmdStub.exe %WORKAT% > NUL 2>&1
 CD %BUILD_PATH%
 ECHO Creating expressPython launcher
-COPY /B /Y %WORKAT%cmdStub.exe + %PACKSAT%OPTIONS + %PACKSAT%launch.cmd %WORKAT%launch.exe > NUL 2>&1
-DEL /F /Q %WORKAT%cmdStub.exe > NUL 2>&1
+COPY /B /Y %BUILD_PATH%cmdStub\cmdStub.exe + %PACKSAT%OPTIONS + %PACKSAT%porta_launch.cmd %WORKAT%launch.exe > NUL 2>&1
 REM
 REM Copy expressPython.exe
 REM
@@ -51,19 +50,29 @@ REM
 REM Copy Snippets
 REM
 COPY /Y %PACKSAT%snippets.dat %WORKAT% > NUL 2>&1
+REM
+REM Build Portable Version
+REM
 ECHO Extracting Python...
-IF EXIST %WORKAT%Python34 GOTO PYTHON_EXTRACTED
 7z x -y -o%WORKAT% %PACKSAT%Python34.7z
-:PYTHON_EXTRACTED
 ECHO Extracting Completed
 ECHO Creating %EXPRESS_7Z_OUT% ...
 7z a -y ExpressPython.7z ExpressPython\ -mx9
 CLS
 ECHO Success
+REM
+REM Build Installer
+REM
+RMDIR /S /Q %WORKAT%Python34
+DEL /F /Q %WORKAT%launch.exe
 MOVE /Y %EXPRESS_7Z_OUT% %OUTPUTAT% > NUL 2>&1
 ECHO Creating ExpressPythonSetup.exe ...
-makensisw Setup.nsi
+ECHO Creating expressPython launcher
+COPY /Y %PACKSAT%python-3.4.2.msi %WORKAT% > NUL 2>&1
+COPY /B /Y %BUILD_PATH%cmdStub\cmdStub.exe + %PACKSAT%OPTIONS + %PACKSAT%setup_launch.cmd %WORKAT%launch.exe > NUL 2>&1
+makensis Setup.nsi
 ECHO Success
 MOVE /Y %EXPRESS_EXE_OUT% %OUTPUTAT% > NUL 2>&1
+DEL /F /S /Q %WORKAT%*
 START %OUTPUTAT%
-PAUSE
+
