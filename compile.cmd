@@ -7,10 +7,12 @@ ECHO -------------------------------------------------
 REM
 REM Set Paths, Change these accordingly
 REM
-SET STATIC_QT_BIN=C:\Qt\Static\5.3.2\bin\
-SET MINGW_BIN=C:\Qt\Qt5.3.2\Tools\mingw482_32\bin\
-SET PYTHON_LOCATION=C:\Python34
+SET STATIC_QT_BIN=D:\Qt\Static\5.9.0\bin\
+SET MINGW_BIN=D:\Qt\Qt5.9.0\Tools\mingw530_32\bin\
+SET PYTHON_LOCATION=C:\Users\Bhathiya\AppData\Local\Programs\Python\Python36-32
 SET BUILD_PATH=%~dp0
+echo %BUILD_PATH%
+PAUSE
 MKDIR %BUILD_PATH%expressPythonRelease > NUL 2>&1
 SET RELEASE_LOCATION=%BUILD_PATH%expressPythonRelease
 SET SOURCE_LOCATION=%BUILD_PATH%expressPython

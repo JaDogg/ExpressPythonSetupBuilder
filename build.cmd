@@ -55,12 +55,13 @@ REM
 REM Build Portable Version
 REM
 ECHO Extracting Python...
-7z x -y -o%WORKAT% %PACKSAT%Python34.7z
+7z x -y -o%WORKAT%Python36 %PACKSAT%python-3.6.1-embed-win32.zip
 ECHO Extracting Completed
 ECHO Creating %EXPRESS_7Z_OUT% ...
 7z a -y ExpressPython.7z ExpressPythonBin\ -mx9
 CLS
 ECHO Success
+EXIT
 REM
 REM Build Installer
 REM
